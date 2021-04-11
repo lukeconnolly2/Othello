@@ -22,12 +22,17 @@ int decode_user_choice_x(char userchoice[]){
 }
 
 void get_user_input(char colour){
+    bool good_input = true;
     char userchoice[3];
     do{
         printf("\nEnter square:\n");
         scanf("%s", userchoice);
+        if(!input_to_board(colour, decode_user_choice_x(userchoice), decode_user_choice_y(userchoice))) {
+            good_input = false;
+            printf("Enter a Valid square.");
+        }
     }
-    while(!input_to_board(colour, decode_user_choice_x(userchoice), decode_user_choice_y(userchoice)));
+    while(!good_input);
 }
 
 //Function to get the names of the two players
