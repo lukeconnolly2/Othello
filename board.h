@@ -7,6 +7,16 @@
 
 #include "structures.h"
 
+bool check_if_all_squares_are_full(){
+    bool full = true;
+    for(int x=0; x<8;x++){
+        for(int y=0;y<8;y++){
+            if(board[x][y].colour == ' ') full = false;
+        }
+    }
+    return full;
+}
+
 void initialise_board(){
     //Print the title.
     printf("   *** Welcome to Othello ***   \n");
