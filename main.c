@@ -37,7 +37,7 @@ int main() {
             current_player->passed_last_go = true;
         }
 
-        if(player1.passed_last_go && player2.passed_last_go) game = false;
+        if((player1.passed_last_go && player2.passed_last_go) || check_if_all_squares_are_full()) game = false;
     }
 
     printf("\nGame Has Ended\n");
@@ -49,5 +49,5 @@ int main() {
 
     writetofile(player1, player2);
 
-    exit(69);
+    exit(1);
 }
