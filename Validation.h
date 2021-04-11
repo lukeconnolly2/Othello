@@ -14,6 +14,8 @@ bool is_valid(char colour_playing, int x, int y){
     if(colour_playing == 'B') colour_against = 'W';
     else colour_against = 'B';
 
+    if(board[x][y].colour != ' ') return false;
+
     bool valid = false;
 
     board[x][y].valid_directions.top_left = false;
@@ -142,8 +144,8 @@ bool is_valid(char colour_playing, int x, int y){
         }
     }
 
-    if(board[x][y].colour != ' ') valid = false;
-    
+
+
     return valid;
 }
 void fill_lines(char colour_playing, int x, int y) {
