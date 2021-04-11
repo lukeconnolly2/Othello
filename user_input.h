@@ -14,9 +14,10 @@
 int decode_user_choice_y(char userchoice[]){
     if(userchoice[1] > 64 && userchoice[1] < 73)  return (int) userchoice[1] - 65;
     if(userchoice[1] > 96 && userchoice[1] < 106) return (int) userchoice[1] - 97;
-    else return 0;
+    else exit(-1);
 }
 int decode_user_choice_x(char userchoice[]){
+    if(userchoice[0] < 48 || userchoice[0] > 57) exit(-1);
     return (int) userchoice[0] - 49;
 }
 
