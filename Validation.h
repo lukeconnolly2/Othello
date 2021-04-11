@@ -141,6 +141,9 @@ bool is_valid(char colour_playing, int x, int y){
             }
         }
     }
+
+    if(board[x][y].colour != ' ') valid = false;
+    
     return valid;
 }
 void fill_lines(char colour_playing, int x, int y) {
