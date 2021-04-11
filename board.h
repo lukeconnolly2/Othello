@@ -5,34 +5,7 @@
 #ifndef OTHELLO_BOARD_H
 #define OTHELLO_BOARD_H
 
-typedef struct directions{
-    bool top_left;
-    bool up;
-    bool top_right;
-    bool right;
-    bool bottom_right;
-    bool down;
-    bool bottom_left;
-    bool left;
-
-}directions;
-
-
-
-//Structure for each square
-typedef struct square{
-    //Boolean value to store if the square is valid to place in.
-    bool valid;
-
-    //Valid directions;
-    directions valid_directions;
-
-    //Char to store its colour.
-    char colour;
-}square;
-
-//Make the board which is a 2D array of squares.
-square board[8][8];
+#include "structures.h"
 
 void initialise_board(){
     //Print the title.
