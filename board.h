@@ -8,7 +8,6 @@
 #include "structures.h"
 
 bool check_if_all_squares_are_full(){
-<<<<<<< HEAD
     bool full = true;
     for(int x=0; x<8;x++){
         for(int y=0;y<8;y++){
@@ -16,15 +15,6 @@ bool check_if_all_squares_are_full(){
         }
     }
     return full;
-=======
-  bool full = true;
-  for(int x=0; x<8;x++){
-    for(int y=0;y<8;y++){
-      if(board[x][y].colour == ' ') full = false;
-    }
-  }
-  return full;
->>>>>>> e372697da6e08fb924b46de74c66a74e2c9436aa
 }
 
 void initialise_board(){
