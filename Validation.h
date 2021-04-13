@@ -14,10 +14,13 @@ bool is_valid(char colour_playing, int x, int y){
     if(colour_playing == 'B') colour_against = 'W';
     else colour_against = 'B';
 
+    //If theres already a colour on this square return false.
     if(board[x][y].colour != ' ') return false;
 
+    //Create a bool to remeber if the square is valid
     bool valid = false;
 
+    //reset all the valid directions on the square.
     board[x][y].valid_directions.top_left = false;
     board[x][y].valid_directions.up = false;
     board[x][y].valid_directions.top_right = false;
@@ -33,11 +36,17 @@ bool is_valid(char colour_playing, int x, int y){
         if(board[x-1][y].colour == colour_against) {
             //if its the case we check the squares after in the same direction for another one of the same colour as
             //currently playing to make a line.
+            //Also made sure in for loop we never go outside the board.
             for (int i = x - 1; i > -1; i--) {
+                //If its the opposing colour we check in the same direction again.
                 if (board[i][y].colour == colour_against) continue;
+                //if its a square with no colour the line is broken and its not a valid direction
                 if (board[i][y].colour == ' ') break;
+                //If it makes a line and gets back to a square with the same colour as the colour playing.
                 if (board[i][y].colour == colour_playing){
+                    //This direction is a valid direction and its set to true in the structure. (Comes in handy when filling the squares later).
                     board[x][y].valid_directions.up = true;
+                    //Valid is set to true.
                     valid = true;
                 }
             }
@@ -45,8 +54,7 @@ bool is_valid(char colour_playing, int x, int y){
     }
     //rest of the checks use the same logic, just manipulating x, y in different ways.
 
-
-    //check down
+    //Checks down
     if(x != 7){
         if(board[x+1][y].colour == colour_against) {
             for (int i = x + 2; i < 8; i++) {
@@ -60,7 +68,7 @@ bool is_valid(char colour_playing, int x, int y){
         }
     }
 
-    //check left
+    //Checks left
     if(y != 0){
         if(board[x][y-1].colour == colour_against) {
             for (int i = y - 2; i > -1; i--) {
@@ -74,7 +82,7 @@ bool is_valid(char colour_playing, int x, int y){
         }
     }
 
-    //check right
+    //Check right
     if(y != 7){
         if(board[x][y+1].colour == colour_against) {
             for (int i = y + 2; i < 8; i++) {
@@ -88,7 +96,7 @@ bool is_valid(char colour_playing, int x, int y){
         }
     }
 
-    //check diagonal top right
+    //Check diagonal top right
     if(x!=0 && y!= 7){
         if(board[x-1][y+1].colour == colour_against){
             for(int i = 2; x-i > -1 && y+i < 8; i++){
@@ -102,7 +110,7 @@ bool is_valid(char colour_playing, int x, int y){
         }
     }
 
-    //check diagonal top left.
+    //Check diagonal top left.
     if(x!=0 && y!=0){
         if(board[x-1][y-1].colour == colour_against){
             for(int i = 2; x-i > -1 && y-i > -1; i++){
@@ -116,7 +124,7 @@ bool is_valid(char colour_playing, int x, int y){
         }
     }
 
-    //check bottom left.
+    //Check bottom left.
     if(x!=7 && y!=0){
         if(board[x+1][y-1].colour == colour_against){
             for(int i = 2; x+i < 8  && y-i > -1; i++){
@@ -130,7 +138,7 @@ bool is_valid(char colour_playing, int x, int y){
         }
     }
 
-    //check bottom right.
+    //Check bottom right.
     if(x!=7 && y!=7){
         if(board[x+1][y+1].colour == colour_against){
             for(int i = 2; x+i < 8  && y+i < 8; i++){
@@ -148,19 +156,24 @@ bool is_valid(char colour_playing, int x, int y){
 
     return valid;
 }
+
+//Fuction to fill in all the lines when a colour is inputted to a square.
 void fill_lines(char colour_playing, int x, int y) {
     //Using the colour of the player currently making a move we figure out the colour not playing.
     char colour_against;
     if (colour_playing == 'B') colour_against = 'W';
     else colour_against = 'B';
 
+    //Checks if the up direction is valid
     if (board[x][y].valid_directions.up) {
+        //If so fill all the square of the opposing colour in this direction untill a square of the playing colour is found
         for (int i = x - 1; i > -1; i--) {
             if (board[i][y].colour == colour_against) board[i][y].colour = colour_playing;
             else if (board[i][y].colour == colour_playing) break;
         }
     }
 
+    //Again the same logic for each direction, just manipulating x and y in different ways.
     if(board[x][y].valid_directions.down){
         for (int i = x+1; i < 8; i++) {
             if (board[i][y].colour == colour_against) board[i][y].colour = colour_playing;
@@ -211,12 +224,15 @@ void fill_lines(char colour_playing, int x, int y) {
     }
 }
 
-
-
+//Function to input onto a square on the board.
 bool input_to_board(char colour, int x, int y){
+    //if its a valid square.
     if(board[x][y].valid){
+        //Set the board at that position to the playing colour
         board[x][y].colour = colour;
+        //Fill all the lines it made.
         fill_lines(colour, x, y);
+        
         return true;
     }
     else return false;

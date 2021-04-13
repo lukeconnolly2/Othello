@@ -33,9 +33,7 @@ void print_score(player *player1, player *player2){
     printf("Score: %s (Black) %d:%d %s (White)\n", player1->name, player1->score, player2->score, player2->name);
 }
 
-
-
-
+//Function to print the valid squares on the board for the player currently playing
 int print_valid(char colour_playing){
     //Int to store the number of squares which it is valid to place a piece on.
     int number_of_valid_squares = 0;
@@ -55,7 +53,7 @@ int print_valid(char colour_playing){
                     //increment the number of valid squares
                     number_of_valid_squares++;
                 }
-                    //else set the square to false.
+                //else set the square to false.
                 else{
                     board[x][y].valid = false;
                 }
@@ -67,21 +65,26 @@ int print_valid(char colour_playing){
     return number_of_valid_squares;
 }
 
-
+//Function to write the final score to a file.
 void writetofile(player player1, player player2) {
-
+    //Makes a file pointer
     FILE *fp;
 
+    //Checks if file exists and trys to append to it.
     fp = fopen("othello-results.txt", "a");
+
+    //If that fails make a new file.
     if(fp == NULL)   fopen("othello-results.txt", "W");
 
+    //Prints different thing to file depending on who won
     if(player1.score > player2.score) fprintf(fp, "%s has a score of %d and %s has a score of %d meaning %s has won\n", player1.name, player1.score, player2.name, player2.score, player1.name);
     if(player1.score < player2.score) fprintf(fp, "%s has a score of %d and %s has a score of %d meaning %s has won\n", player1.name, player1.score, player2.name, player2.score, player2.name);
     if(player1.score == player2.score) fprintf(fp, "%s has a score of %d and %s has a score of %d meaning its a draw\n", player1.name, player1.score, player2.name, player2.score);
 
-
+    //Closes the file pointer.
     fclose(fp);
 
+    //Prints that it has written to the file.
     printf("This has been written to othello-results.txt\n");
 }
 

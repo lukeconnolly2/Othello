@@ -19,6 +19,7 @@ typedef struct player {
     bool passed_last_go;
 }player;
 
+//Structure to be put in the square structure to hold the directions which make it a valid square.
 typedef struct directions{
     bool top_left;
     bool up;

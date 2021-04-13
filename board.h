@@ -7,16 +7,20 @@
 
 #include "structures.h"
 
+//Function to check if theres any squares left on the board.
 bool check_if_all_squares_are_full(){
+    //Bool which assumes its full.
     bool full = true;
     for(int x=0; x<8;x++){
         for(int y=0;y<8;y++){
+            //If it finds an empty one full is set to false.
             if(board[x][y].colour == ' ') full = false;
         }
     }
     return full;
 }
 
+//Function to get the board ready before the game.
 void initialise_board(){
     //Print the title.
     printf("   *** Welcome to Othello ***   \n");
