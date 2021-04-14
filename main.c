@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <unistd.h>
 
 #include "board.h"
 #include "user_input.h"
@@ -37,7 +36,7 @@ int main() {
         //Function to print the board itself.
         print_board();
 
-        //If else to check if the player currently playing has any valid moves. (The function print valid returns the number of valid squares.
+        //If else to check if the player currently playing has any valid moves. (The function print valid returns the number of valid squares.)
         if(print_valid(current_player->colour) != 0) {
             //Set a bool in the player structure which stores if the player passed last go.
             current_player->passed_last_go = false;

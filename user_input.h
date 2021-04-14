@@ -39,7 +39,7 @@ void get_user_input(char colour){
         printf("\nEnter square:\n");
         scanf("%s", userchoice);
         //If it cant be put in the board, ask user again, otherwise it gets put in.
-        if(!input_to_board(colour, decode_user_choice_x(userchoice), decode_user_choice_y(userchoice))) {
+        if(!input_to_board(colour, decode_user_choice_x(userchoice), decode_user_choice_y(userchoice)) && userchoice[0] > 47 && userchoice[0] < 58) {
             good_input = false;
             printf("Enter a Valid square.");
         }

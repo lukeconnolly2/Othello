@@ -232,7 +232,7 @@ bool input_to_board(char colour, int x, int y){
         board[x][y].colour = colour;
         //Fill all the lines it made.
         fill_lines(colour, x, y);
-        
+
         return true;
     }
     else return false;
