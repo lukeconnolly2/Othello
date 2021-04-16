@@ -35,6 +35,7 @@ void get_user_input(char colour){
     //Char array to store this input.
     char userchoice[3];
     do{
+        good_input = true;
         //Prompt user and scan in there input.
         printf("\nEnter square:\n");
         scanf("%s", userchoice);
