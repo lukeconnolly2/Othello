@@ -18,12 +18,18 @@ int decode_user_choice_y(char userchoice[]){
     //if statement for lowercase letters. Also decodes via ascii table.
     if(userchoice[1] > 96 && userchoice[1] < 106) return (int) userchoice[1] - 97;
     //Otherwise the user has inputed an invalid character and we then exit.
-    else exit(-1);
+    else {
+        printf("Invalid input");
+        exit(-1);
+    }
 }
 //Function to decode player input to then output the x array index.
 int decode_user_choice_x(char userchoice[]){
     //If its not a digit on the ascii table, we exit.
-    if(userchoice[0] < 48 || userchoice[0] > 57) exit(-1);
+    if(userchoice[0] < 48 || userchoice[0] > 57){
+        printf("Invalid input");
+        exit(-1);
+    }
     //if it is use ascii table to decode it.
     return (int) userchoice[0] - 49;
 }
@@ -40,7 +46,7 @@ void get_user_input(char colour){
         printf("\nEnter square:\n");
         scanf("%s", userchoice);
         //If it cant be put in the board, ask user again, otherwise it gets put in.
-        if(!input_to_board(colour, decode_user_choice_x(userchoice), decode_user_choice_y(userchoice)) && userchoice[0] > 47 && userchoice[0] < 58) {
+        if(!input_to_board(colour, decode_user_choice_x(userchoice), decode_user_choice_y(userchoice)) && userchoice[0] > 47 && userchoice[0] < 58 && ((userchoice[1] > 64 && userchoice[1] < 91) || (userchoice[1] > 96 && userchoice[1] < 123))){
             good_input = false;
             printf("Enter a Valid square.");
         }
