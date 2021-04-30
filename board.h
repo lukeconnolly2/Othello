@@ -8,16 +8,9 @@
 #include "structures.h"
 
 //Function to check if theres any squares left on the board.
-bool check_if_all_squares_are_full(){
-    //Bool which assumes its full.
-    bool full = true;
-    for(int x=0; x<8;x++){
-        for(int y=0;y<8;y++){
-            //If it finds an empty one full is set to false.
-            if(board[x][y].colour == ' ') full = false;
-        }
-    }
-    return full;
+bool check_if_all_squares_are_full(player player1, player player2){
+    if(player1.score + player2.score == 64) return true;
+    else return false;
 }
 
 //Function to get the board ready before the game.
@@ -69,6 +62,14 @@ void print_board(){
     printf("    ");
     for(int x = 65;x<73;x++)printf("%c   ", x);
     printf("\n");
+}
+
+void reset_squares(){
+    for(int x=0; x<8;x++){
+        for(int y=0;y<8;y++){
+            board[x][y].valid = false;
+        }
+    }
 }
 
 

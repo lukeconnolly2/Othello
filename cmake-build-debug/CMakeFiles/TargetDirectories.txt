@@ -1,0 +1,3 @@
+C:/Users/Luke/Documents/GitHub/Othello/cmake-build-debug/CMakeFiles/Othello.dir
+C:/Users/Luke/Documents/GitHub/Othello/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Luke/Documents/GitHub/Othello/cmake-build-debug/CMakeFiles/rebuild_cache.dir

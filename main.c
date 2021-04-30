@@ -18,6 +18,9 @@ int main() {
     //Make a bool to store if the game should continue
     bool game = true;
 
+    //Char to store p when player passes
+    char pass;
+
     //Run this function to set up the board.
     initialise_board();
 
@@ -47,14 +50,15 @@ int main() {
         else {
             //If the player has no squares they have to pass.
             printf("You have to pass.(Enter p to pass):\n");
+            fflush(stdin);
             //Makes the player put in p to pass because its in the specification.
-            scanf("%c",(char *)NULL);
+            scanf("%c", &pass);
             //Stores the player passed last go in the player structure
             current_player->passed_last_go = true;
         }
 
         //Checks if the game should continue based on if both players had to pass in the last two rounds or if the board is full
-        if((player1.passed_last_go && player2.passed_last_go) || check_if_all_squares_are_full()) game = false;
+        if((player1.passed_last_go && player2.passed_last_go) || check_if_all_squares_are_full(player1, player2)) game = false;
     }
 
     //When the game ends it prints this and the scoreboard.
