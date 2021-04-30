@@ -26,6 +26,7 @@ int main() {
 
     //While loop to loop while the game is on
     while(game) {
+        reset_squares();
         //If else statement to switch the player each round
         if(current_player == &player1) current_player = &player2;
         else if(current_player == &player2)  current_player = &player1;

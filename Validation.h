@@ -226,6 +226,7 @@ void fill_lines(char colour_playing, int x, int y) {
 
 //Function to input onto a square on the board.
 bool input_to_board(char colour, int x, int y){
+
     //if its a valid square.
     if(board[x][y].valid){
         //Set the board at that position to the playing colour
